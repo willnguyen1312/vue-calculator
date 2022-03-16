@@ -41,8 +41,8 @@ const handleAppend = (value: string) => {
   }
 }
 
-const handleEqual = () => {
-  if (!equalVal.value)
+const handleEqual = (clearEqual = false) => {
+  if (!equalVal.value && clearEqual)
     equalVal.value = current.value
 
   if (previous.value) {
@@ -153,7 +153,7 @@ const handleAdd = () => {
     <div class="btn" @click="handleDot">
       .
     </div>
-    <div class="btn operator" @click="handleEqual">
+    <div class="btn operator" @click="handleEqual(true)">
       =
     </div>
   </div>
