@@ -6,10 +6,12 @@ const current = ref('')
 const previous = ref('')
 const operator = ref<Function>(() => undefined)
 const operatorClicked = ref(false)
+const equalVal = ref('')
 
 const handleClear = () => {
   current.value = ''
   previous.value = ''
+  equalVal.value = ''
   operatorClicked.value = false
   operator.value = () => undefined
 }
@@ -40,8 +42,16 @@ const handleAppend = (value: string) => {
 }
 
 const handleEqual = () => {
-  current.value = `${operator.value(parseFloat(previous.value), parseFloat(current.value))}`
-  previous.value = ''
+  if (!equalVal.value)
+    equalVal.value = current.value
+
+  if (previous.value) {
+    current.value = `${operator.value(parseFloat(previous.value), parseFloat(current.value))}`
+    previous.value = ''
+  }
+  else {
+    current.value = `${operator.value(parseFloat(equalVal.value), parseFloat(current.value))}`
+  }
 }
 
 const handleDot = () => {
@@ -59,21 +69,25 @@ const setPrevious = () => {
 }
 
 const handleDivide = () => {
+  equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a / b
 }
 
 const handleTimes = () => {
+  equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a * b
 }
 
 const handleMinus = () => {
+  equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a - b
 }
 
 const handleAdd = () => {
+  equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a + b
 }
@@ -81,8 +95,8 @@ const handleAdd = () => {
 </script>
 
 <template>
-  <div class="m-0 m-auto max-w-96 grid text-40px grid-cols-[repeat(4,1fr)]  calculator">
-    <div class="display overflow-hidden px-2">
+  <div class="m-0 m-auto max-w-356px grid text-40px grid-cols-[repeat(4,1fr)]  calculator">
+    <div class="display overflow-hidden px-4 text-right">
       {{ current || '0' }}
     </div>
     <div class="btn" @click="handleClear">
@@ -164,6 +178,9 @@ const handleAdd = () => {
 .btn {
   background-color: rgb(100,100,100);
   border: 1px solid rgb(49,49,49);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .operator {
