@@ -1,6 +1,10 @@
 {
   "private": true,
   "packageManager": "pnpm@6.32.3",
+  "author": {
+    "name": "Nam Nguyen",
+    "email": "nam.nguyen.node@gmail.com"
+  },
   "scripts": {
     "build": "vite-ssg build",
     "dev": "vite --port 3333 --open",
