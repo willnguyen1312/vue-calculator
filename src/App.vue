@@ -5,7 +5,7 @@
 useHead({
   title: 'Vue Calculator 🧮',
   meta: [
-    { name: 'description', content: 'Opinionated Vite Starter Template' },
+    { name: 'description', content: 'Calculator application written in Vue 🫠' },
   ],
 })
 </script>
