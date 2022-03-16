@@ -60,6 +60,9 @@ const handleDot = () => {
 }
 
 const setPrevious = () => {
+  if (!current.value)
+    return
+
   operatorClicked.value = true
 
   if (previous.value && current.value)
@@ -69,28 +72,60 @@ const setPrevious = () => {
 }
 
 const handleDivide = () => {
+  if (!current.value)
+    return
+
   equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a / b
 }
 
 const handleTimes = () => {
+  if (!current.value)
+    return
+
   equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a * b
 }
 
 const handleMinus = () => {
+  if (!current.value)
+    return
+
   equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a - b
 }
 
 const handleAdd = () => {
+  if (!current.value)
+    return
+
   equalVal.value = ''
   setPrevious()
   operator.value = (a: number, b: number) => a + b
 }
+
+onKeyStroke('+', handleAdd)
+onKeyStroke('-', handleMinus)
+onKeyStroke('*', handleTimes)
+onKeyStroke('/', handleDivide)
+onKeyStroke('%', handlePercent)
+onKeyStroke('Enter', () => handleEqual(true))
+onKeyStroke('c', handleClear)
+onKeyStroke('.', handleDot)
+
+onKeyStroke('0', () => handleAppend('0'))
+onKeyStroke('1', () => handleAppend('1'))
+onKeyStroke('2', () => handleAppend('2'))
+onKeyStroke('3', () => handleAppend('3'))
+onKeyStroke('4', () => handleAppend('4'))
+onKeyStroke('5', () => handleAppend('5'))
+onKeyStroke('6', () => handleAppend('6'))
+onKeyStroke('7', () => handleAppend('7'))
+onKeyStroke('8', () => handleAppend('8'))
+onKeyStroke('9', () => handleAppend('9'))
 
 </script>
 
