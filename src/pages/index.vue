@@ -115,6 +115,9 @@ onKeyStroke('%', handlePercent)
 onKeyStroke('Enter', () => handleEqual(true))
 onKeyStroke('c', handleClear)
 onKeyStroke('.', handleDot)
+onKeyStroke('Backspace', () => {
+  current.value = current.value.slice(0, -1)
+})
 
 onKeyStroke('0', () => handleAppend('0'))
 onKeyStroke('1', () => handleAppend('1'))
