@@ -7,14 +7,14 @@ const previous = ref('')
 const operator = ref<Function>(() => undefined)
 const operatorClicked = ref(false)
 
-const clear = () => {
+const handleClear = () => {
   current.value = ''
   previous.value = ''
   operatorClicked.value = false
   operator.value = () => undefined
 }
 
-const sign = () => {
+const handleSign = () => {
   if (current.value.charAt(0) === '-') {
     current.value = current.value.slice(1)
   }
@@ -25,11 +25,11 @@ const sign = () => {
   }
 }
 
-const percent = () => {
+const handlePercent = () => {
   current.value = `${parseFloat(current.value) / 100}`
 }
 
-const append = (value: string) => {
+const handleAppend = (value: string) => {
   if (operatorClicked.value) {
     current.value = value
     operatorClicked.value = false
@@ -39,12 +39,12 @@ const append = (value: string) => {
   }
 }
 
-const equal = () => {
+const handleEqual = () => {
   current.value = `${operator.value(parseFloat(previous.value), parseFloat(current.value))}`
   previous.value = ''
 }
 
-const dot = () => {
+const handleDot = () => {
   if (!current.value.includes('.'))
     current.value += '.'
 }
@@ -53,27 +53,27 @@ const setPrevious = () => {
   operatorClicked.value = true
 
   if (previous.value && current.value)
-    equal()
+    handleEqual()
 
   previous.value = current.value
 }
 
-const divide = () => {
+const handleDivide = () => {
   setPrevious()
   operator.value = (a: number, b: number) => a / b
 }
 
-const times = () => {
+const handleTimes = () => {
   setPrevious()
   operator.value = (a: number, b: number) => a * b
 }
 
-const minus = () => {
+const handleMinus = () => {
   setPrevious()
   operator.value = (a: number, b: number) => a - b
 }
 
-const add = () => {
+const handleAdd = () => {
   setPrevious()
   operator.value = (a: number, b: number) => a + b
 }
@@ -85,61 +85,61 @@ const add = () => {
     <div class="display overflow-hidden px-2">
       {{ current || '0' }}
     </div>
-    <div class="btn" @click="clear">
+    <div class="btn" @click="handleClear">
       C
     </div>
-    <div class="btn" @click="sign">
+    <div class="btn" @click="handleSign">
       +/-
     </div>
-    <div class="btn" @click="percent">
+    <div class="btn" @click="handlePercent">
       %
     </div>
-    <div class="btn operator" @click="divide">
+    <div class="btn operator" @click="handleDivide">
       ÷
     </div>
-    <div class="btn" @click="append('7')">
+    <div class="btn" @click="handleAppend('7')">
       7
     </div>
-    <div class="btn" @click="append('8')">
+    <div class="btn" @click="handleAppend('8')">
       8
     </div>
-    <div class="btn" @click="append('9')">
+    <div class="btn" @click="handleAppend('9')">
       9
     </div>
-    <div class="btn operator" @click="times">
+    <div class="btn operator" @click="handleTimes">
       x
     </div>
-    <div class="btn" @click="append('4')">
+    <div class="btn" @click="handleAppend('4')">
       4
     </div>
-    <div class="btn" @click="append('5')">
+    <div class="btn" @click="handleAppend('5')">
       5
     </div>
-    <div class="btn" @click="append('6')">
+    <div class="btn" @click="handleAppend('6')">
       6
     </div>
-    <div class="btn operator" @click="minus">
+    <div class="btn operator" @click="handleMinus">
       -
     </div>
-    <div class="btn" @click="append('1')">
+    <div class="btn" @click="handleAppend('1')">
       1
     </div>
-    <div class="btn" @click="append('2')">
+    <div class="btn" @click="handleAppend('2')">
       2
     </div>
-    <div class="btn" @click="append('3')">
+    <div class="btn" @click="handleAppend('3')">
       3
     </div>
-    <div class="btn operator" @click="add">
+    <div class="btn operator" @click="handleAdd">
       +
     </div>
-    <div class="btn zero" @click="append('0')">
+    <div class="btn zero" @click="handleAppend('0')">
       0
     </div>
-    <div class="btn" @click="dot">
+    <div class="btn" @click="handleDot">
       .
     </div>
-    <div class="btn operator" @click="equal">
+    <div class="btn operator" @click="handleEqual">
       =
     </div>
   </div>
