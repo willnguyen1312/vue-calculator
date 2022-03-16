@@ -60,8 +60,6 @@ export default defineConfig({
     // see unocss.config.ts for config
     Unocss(),
 
-    // https://github.com/antfu/vite-plugin-md
-    // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({
       wrapperClasses: markdownWrapperClasses,
       headEnabled: true,
@@ -83,8 +81,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: 'Vue Calculator 🧮',
+        short_name: 'Vue Calculator 🧮',
         theme_color: '#ffffff',
         icons: [
           {

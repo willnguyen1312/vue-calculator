@@ -81,7 +81,7 @@ const handleAdd = () => {
 </script>
 
 <template>
-  <div class="m-0 m-auto max-w-360px grid text-40px grid-cols-[repeat(4,1fr)]  calculator">
+  <div class="m-0 m-auto max-w-96 grid text-40px grid-cols-[repeat(4,1fr)]  calculator">
     <div class="display overflow-hidden px-2">
       {{ current || '0' }}
     </div>
