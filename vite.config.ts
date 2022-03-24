@@ -112,4 +112,8 @@ export default defineConfig({
       inline: ['@vue', '@vueuse', 'vue-demi'],
     },
   },
+
+  build: {
+    sourcemap: true,
+  },
 })
